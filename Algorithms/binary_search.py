@@ -33,3 +33,5 @@ if __name__ == '__main__':
         print("Element is not in the array")
     else:
         print(f"The index of the target element = {target_index}")
+
+# Complexity : O(log N)
