@@ -40,27 +40,22 @@ class LinkedList:
     # get the previous node of current node
     def get_prev_node(self, position):
         temp = self.head
-        count = 1
+        count = 0
 
-        while count < position:
+        while count < position - 1:
             temp = temp.get_next()
             count += 1
 
         return temp
 
     def insert_node(self, target_node, position):
-
-        # if list is empty then add the target node as head
-        if self.head is None:
-            self.head = target_node
-            return
-
         # if the target node has to be added as then
         # just make the head as next node of target node
         # make the target node as head
         if position == 0:
             target_node.set_next(self.head)
             self.head = target_node
+            return
 
         # get previous node and link that node to target node
         # the target node will link the next node of prev node
@@ -73,35 +68,36 @@ class LinkedList:
         if self.head is None:
             return
         # get the prev node
-        # link the prev node with the next node of target node
         prev_node = self.get_prev_node(position)
+        if prev_node is None or prev_node.get_next() is None:  # Invalid position or end of list
+            return
+
+        # link the prev node with the next node of target node
         target_node = prev_node.get_next()
         prev_node.set_next(target_node.get_next())
 
     def delete_node_by_value(self, value):
-        temp = self.head
-
         # if list is empty then return
-        if temp is None:
+        if self.head is None:
             return
 
         # if the value is found in head node
         # then remove the node
         # make the next node as head or set none for single element list
-        if temp.get_value() == value:
-            self.head = temp.get_next()
-            temp = None
+        if self.head.get_value() == value:
+            self.head = self.head.get_next()
             return
 
+        prev = self.head
         # get the prev of node target node
-        while temp.get_next() and temp.get_next().get_value() != value:
-            temp = temp.get_next()
+        while prev.get_next() and prev.get_next().get_value() != value:
+            prev = prev.get_next()
 
         # get the target node
         # link the prev node with the next node of target node
-        if temp.get_next():
-            target_node = temp.get_next()
-            temp.set_next(target_node.get_next())
+        if prev.get_next():
+            target_node = prev.get_next()
+            prev.set_next(target_node.get_next())
             target_node.set_next(None)
         else:
             print(f"Node with value {value} not found in the linked list.")
