@@ -49,7 +49,7 @@ class LinkedList:
         return temp
 
     def insert_node(self, target_node, position):
-        # if the target node has to be added as then
+        # if the target node has to be added head then
         # just make the head as next node of target node
         # make the target node as head
         if position == 0:
@@ -67,11 +67,16 @@ class LinkedList:
         # if list is empty then return
         if self.head is None:
             return
-        # get the prev node
-        prev_node = self.get_prev_node(position)
-        if prev_node is None or prev_node.get_next() is None:  # Invalid position or end of list
+
+        # if the position denotes head node
+        # then remove the node
+        # make the next node as head or set none for single element list
+        if position == 0:
+            self.head = self.head.get_next()
             return
 
+        # get the prev node
+        prev_node = self.get_prev_node(position)
         # link the prev node with the next node of target node
         target_node = prev_node.get_next()
         prev_node.set_next(target_node.get_next())
@@ -117,10 +122,10 @@ linked_list.head.set_next(second_node.set_next(third_node.set_next(fourth_node.s
 linked_list.show_list()
 
 new_node = Node(200)
-linked_list.insert_node(new_node, 3)
+linked_list.insert_node(new_node, 5)
 linked_list.show_list()
 
-linked_list.delete_node_by_position(3)
+linked_list.delete_node_by_position(5)
 linked_list.show_list()
 
 new_node = Node(500)
