@@ -63,7 +63,7 @@ class LinkedList:
         # get the previous node of position
         prev_node = self.get_prev_node(position)
 
-        # check if prev_node of the list or not
+        # check if prev_node is end of the list or not
         if prev_node.next:
             prev_node.next.prev = target_node
         target_node.next = prev_node.next

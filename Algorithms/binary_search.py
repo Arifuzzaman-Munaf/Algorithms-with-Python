@@ -6,7 +6,7 @@ def binary_search(arr, target):
     while left <= right:
 
         # check if target is in the mid-index
-        mid = (left + right) // 2
+        mid = (left + right) >> 1
         if arr[mid] == target:
             return mid
 
@@ -25,13 +25,13 @@ if __name__ == '__main__':
 
     # test array, you can change according to your preferences.
     array = [1, 2, 4, 5, 7, 8, 9, 33, 55, 66, 77, 88, 99, 123, 345, 677, 888]
-    target_element = 55
+    target_element = 9
 
     target_index = binary_search(array, target_element)
 
     if target_index == -1:
         print("Element is not in the array")
     else:
-        print(f"The index of the target element = {target_index}")
+        print(f"The index of the element {target_element} is  = {target_index}")
 
 # Complexity : O(log N)
