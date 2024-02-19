@@ -16,7 +16,7 @@ class Stack:
         return self.__storage[-1]
 
     def is_empty(self):
-        return (False, True)[not self.__storage]
+        return not self.__storage
 
 
 stack = Stack()
