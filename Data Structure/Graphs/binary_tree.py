@@ -25,6 +25,18 @@ class Node:
             print(node.data)
             self.inorder(node.right)
 
+    def preorder(self, node):
+        if node:
+            print(node.data)
+            self.preorder(node.left)
+            self.preorder(node.right)
+
+    def postorder(self, node):
+        if node:
+            self.postorder(node.left)
+            self.postorder(node.right)
+            print(node.data)
+
 
 root = Node(27)
 root.insert_node(14)
@@ -34,4 +46,11 @@ root.insert_node(19)
 root.insert_node(31)
 root.insert_node(42)
 
+print("----------Showing in-order traversal------------")
 root.inorder(root)
+
+print("----------Showing pre-order traversal------------")
+root.preorder(root)
+
+print("----------Showing post-order traversal------------")
+root.postorder(root)
