@@ -37,6 +37,22 @@ class Node:
             self.postorder(node.right)
             print(node.data)
 
+    def search(self, key):
+        if self.data is None:
+            return None
+
+        if self.data == key:
+            return self
+
+        if self.data < key:
+            if self.right:
+                return self.right.search(key)
+            return None
+        else:
+            if self.left:
+                return self.left.search(key)
+            return None
+
 
 root = Node(27)
 root.insert_node(14)
@@ -54,3 +70,8 @@ root.preorder(root)
 
 print("----------Showing post-order traversal------------")
 root.postorder(root)
+
+if root.search(10):
+    print("Node found")
+else:
+    print("Node not found")
