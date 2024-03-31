@@ -53,6 +53,29 @@ class Node:
                 return self.left.search(key)
             return None
 
+    def delete_node(self, root_node, key):
+        if not root_node:
+            return None
+
+        if root_node.data == key:
+            if not root_node.left:
+                return root_node.right
+            if not root_node.right:
+                return root_node.left
+
+            temp = root_node.right
+            while temp.left:
+                temp = temp.left
+            root_node.data = temp.data
+            root_node.right = self.delete_node(root_node.right, root_node.data)
+
+        elif root_node.data > key:
+            root_node.left = self.delete_node(root_node.left, key)
+
+        else:
+            root_node.right = self.delete_node(root_node.right, key)
+        return root_node
+
 
 root = Node(27)
 root.insert_node(14)
@@ -61,6 +84,9 @@ root.insert_node(10)
 root.insert_node(19)
 root.insert_node(31)
 root.insert_node(42)
+root.insert_node(25)
+root.insert_node(12)
+
 
 print("----------Showing in-order traversal------------")
 root.inorder(root)
@@ -75,3 +101,5 @@ if root.search(10):
     print("Node found")
 else:
     print("Node not found")
+
+root.delete_node(root, 10)
